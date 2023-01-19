@@ -89,6 +89,27 @@ var speed = 0;
 var playing = true;
 var k = {ArrowUp: 0, ArrowDown: 0, ArrowLeft: 0, ArrowRight: 0};
 
+var createGameScene = function() {
+    
+    var scroll = 0; // スクロール量を記録する変数
+    …省略（この間に背景をaddChild）…
+    // スコア表示用ラベルの設定
+    var scoreLabel = new Label("");            // ラベルを作る
+    scoreLabel.color = '#fff';                 // 白色に設定
+    scene.addChild(scoreLabel);                // シーンに追加
+    // コメントアウトまたは削除
+    // 説明ラベル設定 ゲーム実装時は消します
+    // var info = new Label('ゲーム画面(仮)');    // ラベルを作る
+    // info.x = 0;                                // 横位置調整
+   // info.y = 0;                                // 縦位置調整
+    // scene.addChild(info);                      // シーンに追加
+
+    // 毎フレームイベントをシーンに追加
+    scene.addEventListener(Event.ENTER_FRAME, function(){
+scroll += SCROLL_SPEED;                       // 走った距離を記録
+scoreLabel.text = scroll.toString()+'?走破'; // スコア表示を更新
+      
+    )};
 
 function loop() {
   speed -= (speed - (k.ArrowUp - k.ArrowDown)) * 0.1;
